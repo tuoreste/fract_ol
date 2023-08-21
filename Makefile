@@ -6,11 +6,11 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 12:58:18 by otuyishi          #+#    #+#              #
-#    Updated: 2023/08/08 12:59:07 by otuyishi         ###   ########.fr        #
+#    Updated: 2023/08/19 21:47:09 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fractal
+NAME = fractol
 
 # Directories and libraries
 # LIBFT_DIR = ./libft
@@ -18,17 +18,17 @@ NAME = fractal
 
 # Compiler and flags
 CC = gcc
-CFLAGS =  -Wall -Wextra -Werror #-fsanitize=address -g
+CFLAGS =  -Wall -Wextra -Werror -Imlx #-fsanitize=address -g
 
 # Source files and object files
-SRC = fractal.c
+SRC = fractol.c mandelbrot.c julia.c
 OBJ = $(SRC:.c=.o)
 
 # Targets
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CC) $(CFLAGS) -o -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

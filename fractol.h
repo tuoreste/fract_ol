@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:52:53 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/18 16:08:34 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:20:21 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define RE_END 1
 # define IM_START -1
 # define IM_END 1
-# define MAX_ITER 80
 
 typedef struct s_complex
 {
@@ -40,6 +39,14 @@ typedef struct s_color
 	int	g;
 	int	b;
 }		t_color;
+
+typedef struct s_col
+{
+	t_color		*colors;
+	t_color		color1;
+	t_color		color2;
+	t_color		paint;
+}				t_coloring;
 
 typedef struct s_fractol_m
 {
@@ -63,7 +70,6 @@ typedef struct s_fractol_j
 	void		*win;
 	int			i;
 	int			x;
-	int			y;
 	int			m;
 	int			hue;
 	int			hue_index;
@@ -74,6 +80,7 @@ typedef struct s_fractol_j
 	double		hue_value;
 }			t_fractol_j;
 
+int			ft_strcmp(char *s1, char *s2);
 //Mandelbrot
 int			run_mandelbrot(char *argv);
 int			mandelbrot(t_complex c);
@@ -81,8 +88,6 @@ int			mandelbrot(t_complex c);
 int			run_julia(char *argv);
 int			julia(t_complex c, t_complex z);
 t_complex	complex(double real, double imag);
-double		map(double value, double start1, double end1, \
-			double start2, double end2);
 t_color		linear_interpolation(t_color color1, t_color color2, double t);
 
 #endif
