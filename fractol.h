@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:52:53 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/20 17:20:21 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/22 11:37:22 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 # define MAX_ITER 80
 # define WIDTH 600
 # define HEIGHT 400
-# define RE_START -2
-# define RE_END 1
-# define IM_START -1
-# define IM_END 1
+# define RE_START -2.5
+# define RE_END 1.0
+# define IM_START -1.5
+# define IM_END 1.5
+# define ZOOM_FACTOR 2
 
 typedef struct s_complex
 {
@@ -53,13 +54,18 @@ typedef struct s_fractol_m
 	int			x;
 	int			y;
 	int			m;
+	double		x_base;
+	double		x_roof;
+	double		y_base;
+	double		y_roof;
 	int			color;
 	int			pixel_position;
+	int			drawer;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	void		*img_ptr;
 	char		*img_data;
-}			t_fractol_m;
+}				t_fractol_m;
 
 typedef struct s_fractol_j
 {
@@ -80,9 +86,17 @@ typedef struct s_fractol_j
 	double		hue_value;
 }			t_fractol_j;
 
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+	char	*img_data;
+}			t_data;
+
 int			ft_strcmp(char *s1, char *s2);
 //Mandelbrot
-int			run_mandelbrot(char *argv);
+int			run_mandelbrot(int argc, char **argv);
 int			mandelbrot(t_complex c);
 //Julia
 int			run_julia(char *argv);
