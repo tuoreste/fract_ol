@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 12:58:18 by otuyishi          #+#    #+#              #
-#    Updated: 2023/08/19 21:47:09 by otuyishi         ###   ########.fr        #
+#    Updated: 2023/08/23 21:05:54 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CC = gcc
 CFLAGS =  -Wall -Wextra -Werror -Imlx #-fsanitize=address -g
 
 # Source files and object files
-SRC = fractol.c mandelbrot.c julia.c
+SRC = fractol.c mandelbrot.c julia.c ft_strcmp.c
 OBJ = $(SRC:.c=.o)
 
 # Targets

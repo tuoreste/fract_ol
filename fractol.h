@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:52:53 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/22 11:37:22 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:06:23 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,25 @@ typedef struct s_data
 	char	*img_data;
 }			t_data;
 
-int			ft_strcmp(char *s1, char *s2);
-//Mandelbrot
-int			run_mandelbrot(int argc, char **argv);
-int			mandelbrot(t_complex c);
-//Julia
-int			run_julia(char *argv);
-int			julia(t_complex c, t_complex z);
-t_complex	complex(double real, double imag);
-t_color		linear_interpolation(t_color color1, t_color color2, double t);
+// int			ft_strcmp(char *s1, char *s2);
+// //Mandelbrot
+// int			run_mandelbrot(int argc, char **argv);
+// int			mandelbrot(t_complex c);
+// //Julia
+// int			run_julia(char *argv);
+// int			julia(t_complex c, t_complex z);
+// t_complex	complex(double real, double imag);
+// t_color		linear_interpolation(t_color color1, t_color color2, double t);
+
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int		mandelbrot(t_complex c);
+void	zooming(double x_move, double y_move, void *var);
+void	up_down(mlx_key_data_t key_data, t_fractol_m *mt);
+void	left_right(mlx_key_data_t key_data, t_fractol_m *mt);
+void	m_hook(mlx_key_data_t key_data, void *var);
+void	action(int argc, char argv, t_fractol_m *mlx_ptr, t_fractol_m *mt);
+void	imaging(int argc, char argv, t_fractol_m *mlx_ptr, t_fractol_m *mt);
+int		run_mandelbrot(int argc, char **argv);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

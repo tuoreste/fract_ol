@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:52:05 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/22 16:40:27 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/23 21:08:15 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,33 @@ void	zooming(double x_move, double y_move, void *var)
 	mt->drawer = 1;
 }
 
-void	grid_controller()
-{
-	t_complex	c;
-	t_fractol_m	m;
+// void	grid_controller()
+// {
+// 	t_complex	c;
+// 	t_fractol_m	m;
 
-	m.x = 0;
-	while (m.x < WIDTH)
-	{
-		m.y = 0;
-		while (m.y < HEIGHT)
-		{
-			c.real = RE_START + ((double)m.x / WIDTH) * (RE_END - RE_START);
-			c.imag = IM_START + ((double)m.y / HEIGHT) * (IM_END - IM_START);
-			m.m = mandelbrot(c);
-			m.color = 255 - (int)(((double)m.m / MAX_ITER) * 255);
-			m.pixel_position = (m.y * WIDTH + m.x) * 4;
-			m.img_data[m.pixel_position] = m.color;
-			m.img_data[m.pixel_position + 1] = m.color;
-			m.img_data[m.pixel_position + 2] = m.color;
-			m.y++;
-		}
-		m.x++;
-	}
+// 	m.x = 0;
+// 	while (m.x < WIDTH)
+// 	{
+// 		m.y = 0;
+// 		while (m.y < HEIGHT)
+// 		{
+// 			c.real = RE_START + ((double)m.x / WIDTH) * (RE_END - RE_START);
+// 			c.imag = IM_START + ((double)m.y / HEIGHT) * (IM_END - IM_START);
+// 			m.m = mandelbrot(c);
+// 			m.color = 255 - (int)(((double)m.m / MAX_ITER) * 255);
+// 			m.pixel_position = (m.y * WIDTH + m.x) * 4;
+// 			m.img_data[m.pixel_position] = m.color;
+// 			m.img_data[m.pixel_position + 1] = m.color;
+// 			m.img_data[m.pixel_position + 2] = m.color;
+// 			m.y++;
+// 		}
+// 		m.x++;
+// 	}
 
-	mlx_put_image_to_window(m.mlx_ptr, m.win_ptr, m.img_ptr, 0, 0);
-	mlx_loop(m.mlx_ptr);
-}
+// 	mlx_put_image_to_window(m.mlx_ptr, m.win_ptr, m.img_ptr, 0, 0);
+// 	mlx_loop(m.mlx_ptr);
+// }
 
 void	up_down(mlx_key_data_t key_data, t_fractol_m *mt)
 {
@@ -132,7 +132,7 @@ void	m_hook(mlx_key_data_t key_data, void *var)
 	mt -> drawer = 1;
 }
 
-void	action(int argc, char argv, t_fractol_m *mlx_ptr, t_fractol_m *mt)
+void	action(int argc, char argv, mlx_t *mlx_ptr, t_fractol_m *mt)
 {
 	mlx_scroll_hook(mlx_ptr, zooming, mt);
 	mt -> drawer = 1;
