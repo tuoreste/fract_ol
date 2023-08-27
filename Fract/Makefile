@@ -6,19 +6,19 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 12:58:18 by otuyishi          #+#    #+#              #
-#    Updated: 2023/08/26 22:54:07 by otuyishi         ###   ########.fr        #
+#    Updated: 2023/08/27 15:41:33 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := fractol
 
 CFLAGS := #-Wextra -Wall -Werror -g -O3 -funroll-loops -fsanitize=address
-LIBMLX := ./lib/MLX42
+LIBMLX := MLX42
 
 HEADERS := -I ./include -I $(LIBMLX)/include
 LIBS := $(LIBMLX)/build/libmlx42.a
 
-SRCS := fractol.c mandelbrot.c julia.c ft_strcmp.c
+SRCS := fractol.c mandelbrot.c  ft_strcmp.c #julia.c
 LDFLAGS := -ldl -L $(LIBMLX)/glfw_lib/ -lglfw3 -pthread -lm -fsanitize=address -flto -framework Cocoa -framework OpenGL -framework IOKit
 OBJS := $(SRCS:.c=.o) 
 
@@ -35,7 +35,7 @@ MLX:
 	sh setup_libs.sh
 
 rmlib:
-	rm -rf lib/MLX42
+	rm -rf MLX42
 
 clean:
 	@rm -rf $(OBJS)

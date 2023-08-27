@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 12:52:53 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/23 21:06:23 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/26 22:53:48 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "lib/MLX42/include/MLX42/MLX42.h"
-# include <math.h>
 
 # define MAX_ITER 80
 # define WIDTH 600
@@ -72,18 +71,29 @@ typedef struct s_fractol_j
 	int			n;
 	double		new_real;
 	double		new_imag;
-	void		*mlx;
+	int			color;
+	void		*mlx_ptr;
 	void		*win;
+	int			drawer;
+	double		x_base;
+	double		x_roof;
+	double		y_base;
+	double		y_roof;
 	int			i;
 	int			x;
+	int			y;
+	int			pixel_position;
+	char		*img_data;
 	int			m;
 	int			hue;
 	int			hue_index;
 	int			saturation;
+	void		*img_ptr;
 	int			value;
-	int			color;
 	double		t;
 	double		hue_value;
+	float		a;
+	float		b;
 }			t_fractol_j;
 
 typedef struct s_data
@@ -94,25 +104,27 @@ typedef struct s_data
 	char	*img_data;
 }			t_data;
 
-// int			ft_strcmp(char *s1, char *s2);
-// //Mandelbrot
-// int			run_mandelbrot(int argc, char **argv);
-// int			mandelbrot(t_complex c);
-// //Julia
-// int			run_julia(char *argv);
-// int			julia(t_complex c, t_complex z);
-// t_complex	complex(double real, double imag);
-// t_color		linear_interpolation(t_color color1, t_color color2, double t);
-
+//Mandelbrot
 int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-int		mandelbrot(t_complex c);
-void	zooming(double x_move, double y_move, void *var);
+int		mandelbrot(t_complex *c);
+void	grid_controller_m(void *mt);
+void	zooming_m(double x_move, double y_move, void *var);
 void	up_down(mlx_key_data_t key_data, t_fractol_m *mt);
 void	left_right(mlx_key_data_t key_data, t_fractol_m *mt);
 void	m_hook(mlx_key_data_t key_data, void *var);
-void	action(int argc, char argv, t_fractol_m *mlx_ptr, t_fractol_m *mt);
-void	imaging(int argc, char argv, t_fractol_m *mlx_ptr, t_fractol_m *mt);
-int		run_mandelbrot(int argc, char **argv);
+void	action_m(mlx_t *mlx_ptr, t_fractol_m *mt);
+void	imaging_m(mlx_t *mlx_ptr, t_fractol_m *mt);
+void	run_mandelbrot(char *str);
 int		ft_strcmp(char *s1, char *s2);
+
+//Julia
+t_color		linear_interpolation(t_color color1, t_color color2, double t);
+t_complex	complex(double real, double imag);
+int			julia(t_complex c, t_complex z);
+void		zooming_j(double x_move, double y_move, void *var);
+void		grid_controller_j(void *param);
+void		action_j(mlx_t *mlx_ptr, t_fractol_j *jul);
+void		imaging_j(mlx_t *mlx_ptr, t_fractol_j *jul);
+void		run_julia(char *str, char *str_two, char *str_three);
 
 #endif
