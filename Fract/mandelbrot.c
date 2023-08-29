@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:55 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/27 20:08:36 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:53:37 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,17 @@ void	set_m(void *param)
 
 	c = (t_complex *)param;
 	y = 0;
-	c->x_min = -2.5;
-	c->x_max = 1.0;
-	c->y_min = -1.5;
-	c->y_max = 1.5;
-	while (++y < c->image->height)
+	while (++y < H)
 	{
 		x = 0;
-		while (++x < c->image->width)
+		while (++x < W)
 		{
 			equation_m(c, x, y);
 			while (c->iter < MAX_ITER && c->z_real * c->z_real + c->z_imag
 				* c->z_imag <= 4.0)
 				refresh_figs(c);
-			mlx_put_pixel(c->image, x, y, (ft_pixel(c->iter % 210, \
-					c->iter % 210, c->iter % 210, 255)));
+			mlx_put_pixel(c->image, x, y, (ft_pixel(c->iter % 280, \
+					c->iter % 255, c->iter % 255, 255)));
 		}
 	}
 }
