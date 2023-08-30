@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 09:55:08 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 23:51:00 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 
+# define ZOOM_FACTOR 0.1
 # define MAX_ITER 500
 # define W 1370
 # define H 1100
-# define ZOOM_FACTOR 0.1
 
 typedef struct s_complex
 {
@@ -45,7 +46,6 @@ typedef struct s_complex
 	uint32_t	color;
 	mlx_image_t	*image;
 	mlx_t		*mlx;
-	int			draw;
 	double		zoom;
 	double		move_x;
 	double		move_y;

@@ -6,30 +6,59 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:13:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 09:55:30 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/31 00:00:37 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+// void	zooming(double xdelta, double ydelta, void *param)
+// {
+// 	t_complex	*c;
+
+// 	c = (t_complex *)param;
+// 	if (ydelta > 0)
+// 	{
+// 		c->x_min += (c->x_max - c->x_min) * ZOOM_FACTOR;
+// 		c->x_max -= (c->x_max - c->x_min) * ZOOM_FACTOR;
+// 		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
+// 		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
+// 		c->zoom += 0.1;
+// 	}
+// 	else if (ydelta < 0)
+// 	{
+// 		c->x_min -= (c->x_max - c->x_min) * ZOOM_FACTOR;
+// 		c->x_max += (c->x_max - c->x_min) * ZOOM_FACTOR;
+// 		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
+// 		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
+// 		c->zoom -= 0.1;
+// 	}
+// }
+
 void	zooming(double xdelta, double ydelta, void *param)
 {
 	t_complex	*c;
+	double		x_factor;
+	double		y_factor;
 
 	c = (t_complex *)param;
+	x_factor = (c->x_max - c->x_min) * ZOOM_FACTOR;
+	y_factor = (c->y_max - c->y_min) * ZOOM_FACTOR;
 	if (ydelta > 0)
 	{
-		c->x_min += (c->x_max - c->x_min) * ZOOM_FACTOR;
-		c->x_max -= (c->x_max - c->x_min) * ZOOM_FACTOR;
-		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
-		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
+		c->x_min += x_factor;
+		c->x_max -= x_factor;
+		c->y_min += y_factor;
+		c->y_max -= y_factor;
+		c->zoom += 0.1;
 	}
 	else if (ydelta < 0)
 	{
-		c->x_min -= (c->x_max - c->x_min) * ZOOM_FACTOR;
-		c->x_max += (c->x_max - c->x_min) * ZOOM_FACTOR;
-		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
-		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
+		c->x_min -= x_factor;
+		c->x_max += x_factor;
+		c->y_min -= y_factor;
+		c->y_max += y_factor;
+		c->zoom -= 0.1;
 	}
 }
 
@@ -73,6 +102,7 @@ int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 {
 	if (ft_strcmp(argv[1], "m") && argc == 2)
 	{
+		c->zoom = 1;
 		c->x_min = -2.5;
 		c->x_max = 1.0;
 		c->y_min = -1.5;
@@ -81,10 +111,7 @@ int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 	}
 	else if (ft_strcmp(argv[1], "j") && argc == 4)
 	{
-		c->x_min = -1.5;
-		c->x_max = 1.5;
-		c->y_min = -1.5;
-		c->y_max = 1.5;
+		c->zoom = 1;
 		c->c_real = ft_atof(argv[2]);
 		c->c_imag = ft_atof(argv[3]);
 		mlx_loop_hook(mlx, set_j, c);

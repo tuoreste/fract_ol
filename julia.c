@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:58:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 14:26:20 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 20:13:52 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,15 @@ int	ft_strcmp(char *s1, char *s2)
 		return (0);
 }
 
-void	x(int y, t_complex *c)
+void	x(t_complex *c)
 {
-	int			x;
-
-	x = 0;
-	while (++x < W)
+	c->x = 0;
+	while (++c->x < W)
 	{
-		c->x_min = 1.5 * (x - W / 2) / \
-		(0.5 * W);
-		c->x_max = (y - H / 2) / \
-		(0.5 * H);
+		c->x_min = 1.5 * (c->x - W / 2) / \
+		(0.5 * c->zoom * W);
+		c->x_max = (c->y - H / 2) / \
+		(0.5 * c->zoom * H);
 		c->iter = 0;
 		while (c->iter < MAX_ITER && \
 			(c->x_min * c->x_min + c->x_max * c->x_max) <= 4)
@@ -54,7 +52,7 @@ void	x(int y, t_complex *c)
 			c->x_max = 2 * c->y_min * c->y_max + c->c_imag;
 			c->iter++;
 		}
-		mlx_put_pixel(c->image, x, y, (ft_pixel(c->iter % 300, \
+		mlx_put_pixel(c->image, c->x, c->y, (ft_pixel(c->iter % 300, \
 				c->iter % 270, c->iter % 270, 225)));
 	}
 }
@@ -62,12 +60,11 @@ void	x(int y, t_complex *c)
 void	set_j(void *param)
 {
 	t_complex	*c;
-	int			y;
 
 	c = (t_complex *)param;
-	y = 0;
-	while (++y < H)
+	c->y = 0;
+	while (++c->y < H)
 	{
-		x(y, c);
+		x(c);
 	}
 }
