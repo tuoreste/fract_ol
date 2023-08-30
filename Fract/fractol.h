@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 08:25:20 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:55:08 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MAX_ITER 500
 # define W 1370
 # define H 1100
+# define ZOOM_FACTOR 0.1
 
 typedef struct s_complex
 {
@@ -56,7 +57,6 @@ int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 int			execution(int argc, char **argv, mlx_t *mlx, t_complex *c);
 void		zooming(double xdelta, double ydelta, void *param);
 int			error_exit(mlx_t *mlx);
-int			invalid_fract(void);
 
 //mandelbrot
 void		set_m(void *param);

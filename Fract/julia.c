@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:58:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 08:26:32 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 14:26:20 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,36 +32,42 @@ int	ft_strcmp(char *s1, char *s2)
 		return (0);
 }
 
+void	x(int y, t_complex *c)
+{
+	int			x;
+
+	x = 0;
+	while (++x < W)
+	{
+		c->x_min = 1.5 * (x - W / 2) / \
+		(0.5 * W);
+		c->x_max = (y - H / 2) / \
+		(0.5 * H);
+		c->iter = 0;
+		while (c->iter < MAX_ITER && \
+			(c->x_min * c->x_min + c->x_max * c->x_max) <= 4)
+		{
+			c->y_min = c->x_min;
+			c->y_max = c->x_max;
+			c->x_min = c->y_min * c->y_min - c->y_max \
+			* c->y_max + c->c_real;
+			c->x_max = 2 * c->y_min * c->y_max + c->c_imag;
+			c->iter++;
+		}
+		mlx_put_pixel(c->image, x, y, (ft_pixel(c->iter % 300, \
+				c->iter % 270, c->iter % 270, 225)));
+	}
+}
+
 void	set_j(void *param)
 {
 	t_complex	*c;
-	int			x;
 	int			y;
 
 	c = (t_complex *)param;
 	y = 0;
 	while (++y < H)
 	{
-		x = 0;
-		while (++x < W)
-		{
-			c->new_real = 1.5 * (x - W / 2) / \
-			(0.5 * W) + c->move_x;
-			c->new_imag = (y - H / 2) / \
-			(0.5 * H) + c->move_y;
-			c->iter = 0;
-			while (c->iter < MAX_ITER && \
-				(c->new_real * c->new_real + c->new_imag * c->new_imag) <= 4)
-			{
-				c->old_real = c->new_real;
-				c->old_imag = c->new_imag;
-				c->new_real = c->old_real * c->old_real - c->old_imag \
-				* c->old_imag + c->c_real;
-				c->new_imag = 2 * c->old_real * c->old_imag + c->c_imag;
-				c->iter++;
-			}
-			mlx_put_pixel(c->image, x, y, (ft_pixel(c->iter % 300, \
-					c->iter % 270, c->iter % 270, 225)));
-		}
+		x(y, c);
 	}
 }

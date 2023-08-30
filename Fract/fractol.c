@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:13:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 08:26:49 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 09:55:30 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 void	zooming(double xdelta, double ydelta, void *param)
 {
 	t_complex	*c;
-	double		third_d;
 
 	c = (t_complex *)param;
-	third_d = 0.1;
-	xdelta = 0;
 	if (ydelta > 0)
 	{
-		c->x_min += (c->x_max - c->x_min) * third_d;
-		c->x_max -= (c->x_max - c->x_min) * third_d;
-		c->y_min += (c->y_max - c->y_min) * third_d;
-		c->y_min -= (c->y_max - c->y_min) * third_d;
+		c->x_min += (c->x_max - c->x_min) * ZOOM_FACTOR;
+		c->x_max -= (c->x_max - c->x_min) * ZOOM_FACTOR;
+		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
+		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
 	}
 	else if (ydelta < 0)
 	{
-		c->x_min -= (c->x_max - c->x_min) * third_d;
-		c->x_max += (c->x_max - c->x_min) * third_d;
-		c->y_min -= (c->y_max - c->y_min) * third_d;
-		c->y_min += (c->y_max - c->y_min) * third_d;
+		c->x_min -= (c->x_max - c->x_min) * ZOOM_FACTOR;
+		c->x_max += (c->x_max - c->x_min) * ZOOM_FACTOR;
+		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
+		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
 	}
 }
 
@@ -84,18 +81,18 @@ int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 	}
 	else if (ft_strcmp(argv[1], "j") && argc == 4)
 	{
-		c->move_x = 0;
-		c->move_y = 0;
+		c->x_min = -1.5;
+		c->x_max = 1.5;
+		c->y_min = -1.5;
+		c->y_max = 1.5;
 		c->c_real = ft_atof(argv[2]);
 		c->c_imag = ft_atof(argv[3]);
 		mlx_loop_hook(mlx, set_j, c);
 	}
 	else
-	{
-		write(1, "Invalid Fractol\nType 'm' for Mandelbrot\n \
-		or      \nType 'j' '-0.52519' '-0.52519' for Julia\n", 92);
-		return (EXIT_FAILURE);
-	}
+		return (write(1, "Invalid Fractol\nType 'm' for Mandelbrot\n \
+		or      \nType 'j' '-0.52519' '-0.52519' for Julia\n", 92), \
+		EXIT_FAILURE);
 	call_me(mlx, c);
 	return (EXIT_SUCCESS);
 }
