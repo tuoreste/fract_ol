@@ -6,18 +6,11 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:13:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/29 17:55:39 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:26:49 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	error_exit(mlx_t *mlx)
-{
-	mlx_close_window(mlx);
-	mlx_strerror(mlx_errno);
-	return (EXIT_FAILURE);
-}
 
 void	zooming(double xdelta, double ydelta, void *param)
 {
@@ -91,7 +84,6 @@ int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 	}
 	else if (ft_strcmp(argv[1], "j") && argc == 4)
 	{
-		c->zoom = 1;
 		c->move_x = 0;
 		c->move_y = 0;
 		c->c_real = ft_atof(argv[2]);
@@ -101,7 +93,7 @@ int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 	else
 	{
 		write(1, "Invalid Fractol\nType 'm' for Mandelbrot\n \
-		      or      \nType 'j' '-0.52519' '-0.52519' for Julia\n", 98);
+		or      \nType 'j' '-0.52519' '-0.52519' for Julia\n", 92);
 		return (EXIT_FAILURE);
 	}
 	call_me(mlx, c);
@@ -113,6 +105,12 @@ int32_t	main(int32_t argc, char **argv)
 	mlx_t		*mlx;
 	t_complex	*c;
 
+	if (argc <= 1)
+	{
+		write(1, "Invalid Fractol\nType 'm' for Mandelbrot\n \
+		or      \nType 'j' '-0.52519' '-0.52519' for Julia\n", 92);
+		return (EXIT_FAILURE);
+	}
 	c = (t_complex *)malloc(sizeof(t_complex));
 	mlx = mlx_init(W, H, "MLX42", true);
 	if (!mlx)

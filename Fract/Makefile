@@ -6,7 +6,7 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 12:58:18 by otuyishi          #+#    #+#              #
-#    Updated: 2023/08/28 15:19:45 by otuyishi         ###   ########.fr        #
+#    Updated: 2023/08/29 23:04:32 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBMLX := MLX42
 HEADERS := -I ./include -I $(LIBMLX)/include
 LIBS := $(LIBMLX)/build/libmlx42.a
 
-SRCS := fractol.c mandelbrot.c  ft_strcmp.c julia.c
+SRCS := fractol.c mandelbrot.c fractol_utils.c julia.c 
 LDFLAGS := -ldl -L $(LIBMLX)/glfw_lib/ -lglfw3 -pthread -lm -fsanitize=address -flto -framework Cocoa -framework OpenGL -framework IOKit
 OBJS := $(SRCS:.c=.o) 
 

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/29 17:08:46 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/08/30 08:25:20 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_complex
 	int			iter;
 	double		z_real;
 	double		z_imag;
-	//double		temp;
 	uint32_t	color;
 	mlx_image_t	*image;
 	mlx_t		*mlx;
@@ -55,6 +54,9 @@ typedef struct s_complex
 int			ft_strcmp(char *s1, char *s2);
 int32_t		ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 int			execution(int argc, char **argv, mlx_t *mlx, t_complex *c);
+void		zooming(double xdelta, double ydelta, void *param);
+int			error_exit(mlx_t *mlx);
+int			invalid_fract(void);
 
 //mandelbrot
 void		set_m(void *param);
