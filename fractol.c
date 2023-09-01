@@ -6,34 +6,11 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 20:13:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/31 00:00:37 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:07:09 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// void	zooming(double xdelta, double ydelta, void *param)
-// {
-// 	t_complex	*c;
-
-// 	c = (t_complex *)param;
-// 	if (ydelta > 0)
-// 	{
-// 		c->x_min += (c->x_max - c->x_min) * ZOOM_FACTOR;
-// 		c->x_max -= (c->x_max - c->x_min) * ZOOM_FACTOR;
-// 		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
-// 		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
-// 		c->zoom += 0.1;
-// 	}
-// 	else if (ydelta < 0)
-// 	{
-// 		c->x_min -= (c->x_max - c->x_min) * ZOOM_FACTOR;
-// 		c->x_max += (c->x_max - c->x_min) * ZOOM_FACTOR;
-// 		c->y_min -= (c->y_max - c->y_min) * ZOOM_FACTOR;
-// 		c->y_min += (c->y_max - c->y_min) * ZOOM_FACTOR;
-// 		c->zoom -= 0.1;
-// 	}
-// }
 
 void	zooming(double xdelta, double ydelta, void *param)
 {
@@ -44,6 +21,7 @@ void	zooming(double xdelta, double ydelta, void *param)
 	c = (t_complex *)param;
 	x_factor = (c->x_max - c->x_min) * ZOOM_FACTOR;
 	y_factor = (c->y_max - c->y_min) * ZOOM_FACTOR;
+	xdelta = 0;
 	if (ydelta > 0)
 	{
 		c->x_min += x_factor;
@@ -60,6 +38,7 @@ void	zooming(double xdelta, double ydelta, void *param)
 		c->y_max += y_factor;
 		c->zoom -= 0.1;
 	}
+	c->draw = 1;
 }
 
 void	ft_hook(mlx_key_data_t key_data, void *param)
@@ -89,6 +68,7 @@ void	ft_hook(mlx_key_data_t key_data, void *param)
 	}
 	else if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
 		return (exit(0));
+	c->draw = 1;
 }
 
 void	call_me(mlx_t *mlx, t_complex *c)
@@ -100,6 +80,7 @@ void	call_me(mlx_t *mlx, t_complex *c)
 
 int	execution(int argc, char **argv, mlx_t *mlx, t_complex *c)
 {
+	c->draw = 1;
 	if (ft_strcmp(argv[1], "m") && argc == 2)
 	{
 		c->zoom = 1;

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:58:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 20:13:52 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:10:01 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ void	set_j(void *param)
 	t_complex	*c;
 
 	c = (t_complex *)param;
+	if (c->draw != 1)
+		return ;
 	c->y = 0;
 	while (++c->y < H)
 	{
 		x(c);
 	}
+	c->draw = 0;
 }

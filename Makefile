@@ -6,13 +6,13 @@
 #    By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/08 12:58:18 by otuyishi          #+#    #+#              #
-#    Updated: 2023/08/29 23:04:32 by otuyishi         ###   ########.fr        #
+#    Updated: 2023/09/01 18:56:50 by otuyishi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := fractol
 
-CFLAGS := #-Wextra -Wall -Werror -g -O3 -funroll-loops -fsanitize=address
+CFLAGS := -Wextra -Wall -Werror -g -O3 -funroll-loops -fsanitize=address
 LIBMLX := MLX42
 
 HEADERS := -I ./include -I $(LIBMLX)/include

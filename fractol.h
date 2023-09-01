@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/30 23:51:00 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/01 19:04:18 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_complex
 	double		x;
 	double		y;
 	int			iter;
+	int			draw;
 	double		z_real;
 	double		z_imag;
 	uint32_t	color;
