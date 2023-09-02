@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/09/03 00:11:52 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/03 01:13:49 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int32_t			ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 int				execution(int argc, char **argv, mlx_t *mlx, t_complex *c);
 void			zooming(double xdelta, double ydelta, void *param);
 int				error_exit(mlx_t *mlx);
+void			ft_hook1(mlx_key_data_t key_data, void *param);
+void			ft_hook(mlx_key_data_t key_data, void *param);
 
 // mandelbrot
 void			set_m(void *param);
