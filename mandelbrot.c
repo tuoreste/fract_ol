@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:57:55 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/09/01 19:08:51 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/02 17:53:41 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	set_m(void *param)
 	t_complex	*c;
 
 	c = (t_complex *)param;
-	if (c->draw != 1)
-		return ;
 	y = 0;
 	while (++y < c->image->height)
 	{
@@ -61,5 +59,4 @@ void	set_m(void *param)
 					c->iter % 255, c->iter % 255, 255)));
 		}
 	}
-	c->draw = 0;
 }

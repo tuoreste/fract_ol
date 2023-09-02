@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   fractol_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/19 17:37:23 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/08/29 22:47:39 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/03 00:32:09 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	ft_isspace(int c)
-{
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
-		|| c == '\r');
-}
-
-int	ft_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
 
 double	ft_atodigit(const char **str)
 {
 	double	result;
 
 	result = 0.0;
-	while (ft_isdigit(**str))
+	while (**str >= '0' && **str <= '9')
 	{
 		result = result * 10.0 + (**str - '0');
 		(*str)++;
@@ -44,7 +33,7 @@ double	ft_atofraction(const char **str)
 	result = 0.0;
 	power = 1.0;
 	(*str)++;
-	while (ft_isdigit(**str))
+	while (**str >= '0' && **str <= '9')
 	{
 		result = result * 10.0 + (**str - '0');
 		power *= 10.0;
@@ -53,16 +42,33 @@ double	ft_atofraction(const char **str)
 	return (result / power);
 }
 
-double	ft_atof(const char *str)
+int	is_valid_input(const char *str)
 {
-	double	result;
-	double	sign;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i] >= '0' && str[i] <= '9') || str[i] == '-' || str[i] == '+'
+			|| str[i] == '.')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+double	convert_to_float(const char *str)
+{
+	double	res;
+	int		sign;
 	int		f;
 
-	result = 0.0;
-	sign = 1.0;
+	res = 0.0;
+	sign = 1;
 	f = 0;
-	while (ft_isspace(*str))
+	while (*str && ((*str == ' ' || *str == '\t' || *str == '\n' || *str == '\v'
+				|| *str == '\f' || *str == '\r')))
 		str++;
 	if (*str == '-')
 	{
@@ -70,14 +76,22 @@ double	ft_atof(const char *str)
 		str++;
 	}
 	else if (*str == '+')
-	{
 		str++;
-	}
-	result = ft_atodigit(&str);
+	res = ft_atodigit(&str);
 	if (*str == '.')
 	{
 		f = 1;
-		result += ft_atofraction(&str);
+		res += ft_atofraction(&str);
 	}
-	return (result * sign);
+	return (res * sign);
+}
+
+double	ft_atof(const char *str)
+{
+	if (!is_valid_input(str))
+	{
+		write(1, "Invalid character(s) in input string\n", 38);
+		exit(1);
+	}
+	return (convert_to_float(str));
 }
