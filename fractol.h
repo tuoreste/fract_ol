@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 16:31:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/09/03 01:13:49 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/05 09:05:44 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_complex
 	double		new_imag;
 	double		old_real;
 	double		old_imag;
-	double		x;
-	double		y;
+	int			x;
+	int			y;
 	int			iter;
 	int			draw;
 	double		z_real;
@@ -75,7 +75,5 @@ double			convert_to_float(const char *str);
 int				is_valid_input(const char *str);
 double			ft_atofraction(const char **str);
 double			ft_atodigit(const char **str);
-int				ft_isdigit(int c);
-int				ft_isspace(int c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: otuyishi <otuyishi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/26 15:58:12 by otuyishi          #+#    #+#             */
-/*   Updated: 2023/09/03 01:12:16 by otuyishi         ###   ########.fr       */
+/*   Updated: 2023/09/03 16:04:11 by otuyishi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	x(t_complex *c)
 			c->iter++;
 		}
 		mlx_put_pixel(c->image, c->x, c->y, (ft_pixel(c->iter % 300, c->iter
-					% 270, c->iter % 270, 225)));
+					% 270, c->iter % 260, 255)));
 	}
 }
 
