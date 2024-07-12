@@ -8,7 +8,7 @@ The Mandelbrot set is a set of complex numbers \( c \) for which the function \(
 
 ![Mandelbrot Set](results/m.png)
 
-*Image source: [Wikipedia](https://en.wikipedia.org/wiki/Mandelbrot_set)*
+*Image source: project results*
 
 ### Features
 - Zooming and panning to explore different regions of the Mandelbrot set.
@@ -18,9 +18,9 @@ The Mandelbrot set is a set of complex numbers \( c \) for which the function \(
 
 Julia sets are related to the Mandelbrot set and are defined similarly. Each point \( c \) in the complex plane corresponds to a unique Julia set. Here's an image of a Julia set:
 
-![Julia Set](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Julia_set_%28%CE%B5%3D0.37%2C+%CF%86%3D0.3%29.png/640px-Julia_set_%28%CE%B5%3D0.37%2C+%CF%86%3D0.3%29.png)
+![Mandelbrot Set](results/j.png)
 
-*Image source: [Wikipedia](https://en.wikipedia.org/wiki/Julia_set)*
+*Image source: project results*
 
 ### Features
 - Interactive parameter selection to generate different Julia sets.
