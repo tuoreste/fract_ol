@@ -31,7 +31,7 @@ Julia sets are related to the Mandelbrot set and are defined similarly. Each poi
 To run the Fractol program:
 
 1. Clone this repository.
-2. Compile the program according to the provided instructions.
+2. Run "bash setup_libs.sh" and Compile the program by running "make".
 3. Run the executable.
 
 Ensure you have the necessary dependencies and libraries installed as specified in the project documentation.
