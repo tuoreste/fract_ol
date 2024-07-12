@@ -6,7 +6,7 @@ Welcome to the Fractol project! This project explores fractals using interactive
 
 The Mandelbrot set is a set of complex numbers \( c \) for which the function \( f(z) = z^2 + c \) does not diverge when iterated from \( z = 0 \). Here's an image of the Mandelbrot set:
 
-![Mandelbrot Set](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mandel_zoom_00_mandelbrot_set.jpg/640px-Mandel_zoom_00_mandelbrot_set.jpg)
+![Mandelbrot Set](results/m.png)
 
 *Image source: [Wikipedia](https://en.wikipedia.org/wiki/Mandelbrot_set)*
 
